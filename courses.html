@@ -1,132 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-  /* Hide the page content until Firebase verifies the user */
-  body {
-    display: none; 
-  }
-  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quizable — Course Directory</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <title>Service Unavailable</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
   <style>
-    :root { --bg: #0a0a0f; --surface: #12121a; --border: #2a2a3d; --accent: #6c63ff; --text: #e8e8f0; --text-dim: #9999b8; }
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
-
-    /* ── PARTNER BANNER ── */
-    .partner-banner { 
-      background: linear-gradient(90deg, rgba(108,99,255,0.1), transparent);
-      border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.5rem 2rem; margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between;
-      animation: fadeUp 0.6s ease both;
+    :root {
+      --bg: #F4F2EC;
+      --surface: #FFFFFF;
+      --border: #111111;
+      --accent: #FF4500; 
+      --text: #111111;
+      --text-muted: #555555;
     }
-    .partner-info h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 0.2rem; }
-    .partner-info p { font-size: 0.85rem; color: var(--text-dim); }
-    .partner-logos { display: flex; align-items: center; gap: 1rem; opacity: 0.8; }
-    .partner-logos img { height: 30px; filter: grayscale(1) brightness(2); }
-
-    /* ── NAV & LAYOUT (Simplified for brevity) ── */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 64px; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-    .page-wrapper { padding: 120px 2rem 4rem; max-width: 1100px; margin: 0 auto; width: 100%; }
-    .page-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 3rem; text-align: center; }
-
-    /* ── GRID ── */
-    .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-    .exam-card { 
-      background: var(--surface); border: 1px solid var(--border); border-radius: 16px; 
-      padding: 2.5rem 2rem; text-decoration: none; color: inherit; transition: 0.3s;
-      display: flex; flex-direction: column; gap: 1rem;
+    
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background-color: var(--bg);
+      background-image: radial-gradient(#d5d3ce 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
     }
-    .exam-card:hover { transform: translateY(-5px); border-color: var(--accent); background: #161622; }
-    .exam-icon { font-size: 2rem; }
-    .exam-name { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; }
-    .exam-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
-    .cta-text { font-weight: 600; color: var(--accent); margin-top: auto; display: flex; align-items: center; gap: 0.5rem; }
 
-    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    .error-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      padding: 3.5rem 2.5rem;
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 8px 8px 0 var(--border);
+      position: relative;
+    }
+
+    .error-card::before {
+      content: 'STATUS: 410';
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border: 2px solid var(--border);
+      text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
+    }
+
+    .btn-home {
+      display: inline-block;
+      width: 100%;
+      background: var(--surface);
+      color: var(--text);
+      border: 2px solid var(--border);
+      padding: 1rem;
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: all 0.15s;
+      box-shadow: 4px 4px 0 var(--border);
+    }
+
+    .btn-home:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--border);
+    }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" style="font-family:'Syne',sans-serif; font-weight:800; text-decoration:none; color:white; font-size:1.3rem;">Quizable<span>.</span></a>
-  <a href="/" style="color:var(--text-dim); text-decoration:none; font-size:0.9rem;">← Dashboard</a>
-</nav>
-
-<div class="page-wrapper">
-  
-  <div class="partner-banner">
-    <div class="partner-info">
-      <h4>Provided by DeltaStudy</h4>
-      <p>You'll be redirected to a third party website.</p>
-    </div>
-    <div class="partner-logos">
-      <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;">QUIZABLE × DELTASTUDY</div>
-    </div>
+  <div class="error-card">
+    <h1>Unavailable</h1>
+    <p>The service you are looking for is no longer available.</p>
+    <a href="/" class="btn-home">← Back to Home</a>
   </div>
 
-  <h1 class="page-title">Explore Courses</h1>
-
-  <div class="directory-grid">
-    <a href="/courses/pw" class="exam-card">
-      <div class="exam-icon">PW JEE & NEET</div>
-      <h3 class="exam-name">Physics Wallah</h3>
-      <p class="exam-desc">Access batches from PW. Redirects to partner websites for video content.</p>
-      <div class="cta-text">View Batches →</div>
-    </a>
-
-    <a href="/courses/pwmaha" class="exam-card">
-      <div class="exam-icon">PW MAHARASHTRA</div>
-      <h3 class="exam-name">PW Maharashtra</h3>
-      <p class="exam-desc">Access MHT-CET batches from PW.</p>
-      <div class="cta-text">View Batches →</div>
-    </a>
-
-    <a href="/courses/class10" class="exam-card">
-      <div class="exam-icon">10TH BOARDS</div>
-      <h3 class="exam-name">CLASS 10</h3>
-      <p class="exam-desc">CBSE and State board focused courses from PW.</p>
-      <div class="cta-text">View Batches →</div>
-    </a>
-  </div>
-</div>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-  // PASTE YOUR ACTUAL CONFIG HERE
-  const firebaseConfig = {
-    apiKey: "AIzaSyBsMWa4Tup5nj6Xh5ev3FLiftGjWZGwukk",
-    authDomain: "sigmascore300.firebaseapp.com",
-    projectId: "sigmascore300",
-    storageBucket: "sigmascore300.firebasestorage.app",
-    messagingSenderId: "293195338803",
-    appId: "1:293195338803:web:b2a45a3b48a378dd99ff46",
-    measurementId: "G-MLZYWG2EEM"
-  };
-
-  try {
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Logged in! Show the page.
-        document.body.style.display = "block"; 
-      } else {
-        // Not logged in! Redirect.
-        window.location.href = "/index.html?auth=required"; 
-      }
-    });
-  } catch (error) {
-    console.error("Firebase Initialization Error:", error);
-    // Failsafe: if Firebase crashes, at least show the page so you aren't stuck on white
-    document.body.style.display = "block"; 
-  }
-</script>
 </body>
 </html>
