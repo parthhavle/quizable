@@ -146,11 +146,11 @@
 
   <div id="loader">
     <div class="spinner"></div>
-    <div style="font-weight: bold; color: var(--nta-blue);" id="load-text">Loading NTA Environment...</div>
+    <div style="font-weight: bold; color: var(--nta-blue);" id="load-text">Loading TEST Environment...</div>
   </div>
 
   <div class="top-header">
-    <div class="exam-title" id="display-title">Quizable NTA Platform</div>
+    <div class="exam-title" id="display-title">Quizable Test Platform</div>
     <div class="timer-container">
       <span class="timer-text">Time Left:</span>
       <div class="timer-box" id="timer">--:--:--</div>
@@ -615,7 +615,7 @@
       
       document.getElementById('loader').style.display = 'flex';
       document.querySelector('.spinner').style.display = 'block'; 
-      document.getElementById('load-text').innerText = "Processing NTA Scores...";
+      document.getElementById('load-text').innerText = "Processing Scores...";
       document.getElementById('load-text').style.color = "var(--nta-blue)";
       
       let score = 0, correct = 0, wrong = 0, unattempted = 0;
