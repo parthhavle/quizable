@@ -402,7 +402,7 @@ function renderTests() {
       <div class="tc-title">${escHtml(t.title)}</div>
       <div class="tc-sub">${escHtml(t.description || t.year || '')}</div>
       <div class="tc-meta">
-        <div class="tc-pill">⏱ ${duration_minutes} min</div>
+        <div class="tc-pill">⏱ ${t.duration_minutes} min</div>
         <div class="tc-pill">❓ ${t.totalQuestions || 90} Qs</div>
         <div class="tc-pill">📊 ${t.totalMarks || 300} marks</div>
         
