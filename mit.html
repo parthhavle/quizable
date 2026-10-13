@@ -151,7 +151,7 @@
 <nav>
   <a class="nav-logo" href="/index.html"><span>Quizable</span></a>
   <span class="nav-sep">/</span>
-  <span class="nav-page">JEE Mains</span>
+  <span class="nav-page">MIT AOE</span>
   <div class="nav-spacer"></div>
   <div class="nav-user-area">
     <div id="nav-user"></div>
@@ -161,8 +161,8 @@
 <div class="exam-hero">
   <div class="hero-inner">
     <a href="/" class="back-crumb">← Back to home</a>
-    <div class="exam-hero-badge">🎯 MIT</div>
-    <h1>MIT<br/>— Academy of Engneering</h1>
+    <div class="exam-hero-badge">MIT</div>
+    <h1>MIT<br/>Academy of Engneering</h1>
     <p>Class Tests</p>
     <div class="exam-stats-row">
       <div class="exam-stat"><div class="es-num" id="stat-total">—</div><div class="es-label">Available Tests</div></div>
@@ -402,7 +402,7 @@ function renderTests() {
       <div class="tc-title">${escHtml(t.title)}</div>
       <div class="tc-sub">${escHtml(t.description || t.year || '')}</div>
       <div class="tc-meta">
-        <div class="tc-pill">⏱ ${duration} min</div>
+        <div class="tc-pill">⏱ ${duration_minutes} min</div>
         <div class="tc-pill">❓ ${t.totalQuestions || 90} Qs</div>
         <div class="tc-pill">📊 ${t.totalMarks || 300} marks</div>
         
@@ -413,7 +413,7 @@ function renderTests() {
         ${t.sections ? `<div class="tc-pill">📚 ${t.sections.length} sections</div>` : ''}
       </div>
       <div class="tc-footer">
-        ${result ? `<div class="tc-completed">✓ ${result.score}/${t.totalMarks||300} · Best</div>` : `<div class="tc-attempts"><strong>${attempts.toLocaleString()}</strong> attempts</div>`}
+        ${result ? `<div class="tc-completed">✓ ${result.score}/${t.totalMarks||25} · Best</div>` : `<div class="tc-attempts"><strong>${attempts.toLocaleString()}</strong> attempts</div>`}
         <button class="tc-start" onclick="event.stopPropagation();startTest('${t.id}','${escHtml(t.title)}')">
           ${result ? '🔁 Reattempt' : '▶ Start Test'}
         </button>
