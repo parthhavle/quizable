@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5662933095045266" crossorigin="anonymous"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quizable — MITAOE Tests</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      /* Light Neo-Brutalist "Print" Palette */
+      --bg: #F4F2EC;
+      --surface: #FFFFFF;
+      --surface2: #EAE8E1;
+      --border: #111111;
+      
+      /* Exam Specific: JEE Mains (Purple) */
+      --exam-color: #8b5cf6; 
+      --exam-color-soft: rgba(139, 92, 246, 0.1);
+      
+      --green: #10b981;
+      --green-soft: rgba(16, 185, 129, 0.1);
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --yellow-soft: rgba(245, 158, 11, 0.1);
+      
+      --text: #111111;
+      --text-dim: #333333;
+      --text-muted: #555555;
+    }
+    
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background-color: var(--bg);
+      /* Subtle dot grid texture for that technical blueprint look */
+      background-image: radial-gradient(#d5d3ce 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav { 
+      position: sticky; top: 0; z-index: 100; 
+      background: var(--bg); 
+      border-bottom: 2px solid var(--border); 
+      display: flex; align-items: center; padding: 0 2rem; height: 60px; gap: 1rem; 
+    }
+    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; text-transform: uppercase; text-decoration: none; color: var(--text); }
+    .nav-logo span { color: var(--exam-color); }
+    .nav-sep { color: var(--text-muted); font-size: 1.2rem; }
+    .nav-page { font-size: 0.9rem; color: var(--text-dim); font-weight: 500; }
+    .nav-spacer { flex: 1; }
+    .nav-user-area { display: flex; align-items: center; gap: 0.75rem; }
+    #nav-user { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: var(--text-dim); }
+    .nav-avatar { width: 32px; height: 32px; border-radius: 0; background: var(--surface); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--text); font-weight: bold; }
+    
+    /* HERO STRIP */
+    .exam-hero { 
+      border-bottom: 2px solid var(--border); 
+      padding: 3rem 2rem 2.5rem; position: relative; 
+      background: var(--bg); 
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .back-crumb { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-muted); font-size: 0.85rem; text-decoration: none; margin-bottom: 1.2rem; transition: color 0.1s; border-bottom: 1px dashed transparent; font-weight: 500; }
+    .back-crumb:hover { color: var(--border); border-bottom-color: var(--border); }
+    
+    .exam-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--surface); border: 2px solid var(--border); box-shadow: 3px 3px 0 var(--exam-color); padding: 0.25rem 0.9rem; font-size: 0.75rem; color: var(--text); margin-bottom: 1.2rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: bold; }
+    .exam-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; text-transform: uppercase; margin-bottom: 0.5rem; line-height: 1.1; color: var(--text); letter-spacing: -0.02em; }
+    .exam-hero p { color: var(--text-dim); font-size: 0.95rem; max-width: 600px; line-height: 1.6; }
+    
+    .exam-stats-row { display: flex; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap; }
+    .exam-stat { text-align: left; border-left: 3px solid var(--exam-color); padding-left: 1rem; }
+    .es-num { font-size: 1.4rem; font-weight: 500; color: var(--text); font-family: 'Space Grotesk', sans-serif; }
+    .es-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; text-transform: uppercase; font-weight: 500; }
+
+    /* FILTERS (FIXED OVERLAP) */
+    .filters-bar { 
+      max-width: 1100px; 
+      margin: 1.5rem auto 0; 
+      /* Added generous bottom padding to clear the box-shadows */
+      padding: 0.5rem 2rem 1.5rem; 
+      display: flex; 
+      align-items: center; 
+      /* Increased row-gap to 1.25rem so wrapping buttons don't collide */
+      gap: 1.25rem 0.75rem; 
+      flex-wrap: wrap; 
+    }
+    .filter-label { font-size: 0.85rem; color: var(--text-muted); margin-right: 0.25rem; text-transform: uppercase; font-weight: 500; }
+    .filter-btn { padding: 0.4rem 1rem; border-radius: 0; font-family: 'DM Mono', monospace; font-size: 0.8rem; cursor: pointer; border: 2px solid var(--border); background: var(--surface); color: var(--text); transition: all 0.1s; text-transform: uppercase; font-weight: 500; }
+    
+    .filter-btn.active { background: var(--exam-color); color: #FFF; box-shadow: 3px 3px 0 var(--border); transform: translate(-2px, -2px); }
+    .filter-btn:hover:not(.active) { background: var(--surface2); }
+    
+    .filter-spacer { flex: 1; min-width: 10px; }
+    .sort-select { background: var(--surface); border: 2px solid var(--border); border-radius: 0; padding: 0.4rem 0.75rem; color: var(--text); font-family: 'DM Mono', monospace; font-size: 0.8rem; outline: none; cursor: pointer; text-transform: uppercase; font-weight: 500; transition: box-shadow 0.1s; }
+    .sort-select:hover { box-shadow: 3px 3px 0 var(--border); transform: translate(-1px, -1px); }
+
+    /* CONTENT */
+    .content { max-width: 1100px; margin: 0 auto 4rem; padding: 0 2rem; }
+    .skeleton-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    .skeleton-card { background: var(--surface); border: 2px solid var(--border); padding: 1.5rem; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+    .skel-line { background: var(--surface2); margin-bottom: 0.6rem; border: 1px solid #ddd; }
+    
+    .tests-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    
+    .test-card { background: var(--surface); border: 2px solid var(--border); padding: 1.5rem; cursor: pointer; transition: all 0.15s ease; position: relative; display: flex; flex-direction: column; }
+    .test-card:hover { box-shadow: 6px 6px 0 var(--exam-color); transform: translate(-3px, -3px); }
+    
+    .tc-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
+    .tc-badge { font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border: 1px solid var(--border); font-weight: bold; background: var(--surface2); color: var(--text); }
+    .tc-badge.free { background: var(--green); color: #fff; }
+    .tc-badge.new  { background: var(--exam-color); color: #fff; }
+    
+    .tc-status { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; font-weight: 500; }
+    .status-dot { width: 8px; height: 8px; background: var(--green); border-radius: 0; border: 1px solid var(--border); }
+    
+    .tc-title { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.15rem; margin-bottom: 0.35rem; line-height: 1.3; text-transform: uppercase; color: var(--text); }
+    .tc-sub { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+    
+    .tc-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .tc-pill { background: var(--surface2); border: 1px solid var(--border); padding: 0.2rem 0.55rem; font-size: 0.72rem; color: var(--text-dim); display: flex; align-items: center; gap: 0.3rem; text-transform: uppercase; font-weight: 500; }
+    
+    .tc-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 2px dashed var(--border); }
+    .tc-attempts { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+    .tc-attempts strong { color: var(--text); font-weight: bold; }
+    
+    .tc-start { display: flex; align-items: center; gap: 0.4rem; background: var(--surface); color: var(--text); border: 2px solid var(--border); padding: 0.45rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.825rem; font-weight: 600; cursor: pointer; transition: all 0.1s; text-transform: uppercase; box-shadow: 2px 2px 0 var(--border); }
+    .tc-start:hover { background: var(--exam-color); color: #FFF; box-shadow: 4px 4px 0 var(--border); transform: translate(-2px, -2px); }
+    
+    .tc-completed { display: flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; color: var(--green); text-transform: uppercase; font-weight: bold; }
+    
+    .empty-state { text-align: center; padding: 5rem 2rem; color: var(--text-muted); border: 2px dashed var(--border); margin-top: 2rem; background: var(--surface); }
+    .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; text-transform: uppercase; }
+    .empty-sub { font-size: 0.85rem; line-height: 1.6; max-width: 350px; margin: 0 auto; }
+    
+    .error-banner { background: #fee2e2; border: 2px solid var(--red); padding: 1rem 1.2rem; color: var(--red); font-size: 0.875rem; margin-bottom: 1.5rem; text-transform: uppercase; font-weight: 500; box-shadow: 4px 4px 0 var(--red); }
+    
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); border-left: 1px solid var(--border); }
+    ::-webkit-scrollbar-thumb { background: var(--text-muted); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/index.html"><span>Quizable</span></a>
+  <span class="nav-sep">/</span>
+  <span class="nav-page">JEE Mains</span>
+  <div class="nav-spacer"></div>
+  <div class="nav-user-area">
+    <div id="nav-user"></div>
+  </div>
+</nav>
+
+<div class="exam-hero">
+  <div class="hero-inner">
+    <a href="/" class="back-crumb">← Back to home</a>
+    <div class="exam-hero-badge">🎯 JEE Mains</div>
+    <h1>Joint Entrance Examination<br/>— Main</h1>
+    <p>NTA-pattern full-length mock tests with Physics, Chemistry & Mathematics. Section A (MCQ) + Section B (Numerical). Authentic difficulty and marking scheme.</p>
+    <div class="exam-stats-row">
+      <div class="exam-stat"><div class="es-num" id="stat-total">—</div><div class="es-label">Available Tests</div></div>
+      <div class="exam-stat"><div class="es-num">75</div><div class="es-label">Questions / Test</div></div>
+      <div class="exam-stat"><div class="es-num">3 hrs</div><div class="es-label">Duration</div></div>
+      <div class="exam-stat"><div class="es-num">300</div><div class="es-label">Max Marks</div></div>
+      <div class="exam-stat"><div class="es-num" id="stat-completed">—</div><div class="es-label">Completed by you</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="filters-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+  <button class="filter-btn" onclick="setFilter('free', this)">Free</button>
+  <button class="filter-btn" onclick="setFilter('new', this)">New</button>
+  <button class="filter-btn" onclick="setFilter('notAttempted', this)">Not Attempted</button>
+  <button class="filter-btn" onclick="setFilter('attempted', this)">Completed</button>
+  <div class="filter-spacer"></div>
+  <select class="sort-select" onchange="setSort(this.value)" id="sort-select">
+    <option value="newest">Newest first</option>
+    <option value="oldest">Oldest first</option>
+    <option value="title">A → Z</option>
+  </select>
+</div>
+
+<!-- Added padding-top to mirror the padding-bottom fix of the previous div -->
+<div class="filters-bar" style="margin-top: 0; padding-top: 1.5rem; border-top: 2px solid var(--border);">
+  <span class="filter-label">Browse by:</span>
+  <select class="sort-select" id="filter-class" onchange="setMetaFilters()">
+    <option value="All">All Classes</option>
+    <option value="11">Class 11</option>
+    <option value="12">Class 12</option>
+    <option value="12+">Dropper (12+)</option>
+  </select>
+  <select class="sort-select" id="filter-type" onchange="setMetaFilters()">
+    <option value="All">All Test Types</option>
+    <option value="Full Syllabus">Full Syllabus</option>
+    <option value="Part Syllabus">Part Syllabus</option>
+    <option value="Chapter-wise">Chapter-wise</option>
+    <option value="PYQ">Previous Year Paper</option>
+  </select>
+  <select class="sort-select" id="filter-batch" onchange="setMetaFilters()">
+    <option value="All">All Batches</option>
+  </select>
+</div>
+
+<div class="content">
+  <div id="error-area"></div>
+  <div id="tests-container">
+    <div class="skeleton-grid" id="skeleton">
+      ${Array(6).fill(0).map(()=>`
+        <div class="skeleton-card">
+          <div class="skel-line" style="height:12px;width:60%"></div>
+          <div class="skel-line" style="height:20px;width:85%;margin-top:0.5rem"></div>
+          <div class="skel-line" style="height:12px;width:40%;margin-top:0.25rem"></div>
+          <div style="display:flex;gap:6px;margin-top:1rem">
+            <div class="skel-line" style="height:22px;width:70px;margin:0"></div>
+            <div class="skel-line" style="height:22px;width:70px;margin:0"></div>
+            <div class="skel-line" style="height:22px;width:70px;margin:0"></div>
+          </div>
+          <div class="skel-line" style="height:2px;margin:1rem 0"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="skel-line" style="height:12px;width:80px;margin:0"></div>
+            <div class="skel-line" style="height:32px;width:100px;margin:0;"></div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="tests-grid" id="tests-grid" style="display:none"></div>
+    <div class="empty-state" id="empty-state" style="display:none">
+      <div class="empty-icon">📭</div>
+      <div class="empty-title">No tests found</div>
+      <div class="empty-sub">Try a different filter, or check back soon — new tests are added regularly.</div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp }     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, query, where }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBsMWa4Tup5nj6Xh5ev3FLiftGjWZGwukk",
+    authDomain: "sigmascore300.firebaseapp.com",
+    projectId: "sigmascore300",
+    storageBucket: "sigmascore300.firebasestorage.app",
+    messagingSenderId: "293195338803",
+    appId: "1:293195338803:web:b2a45a3b48a378dd99ff46",
+    measurementId: "G-MLZYWG2EEM"
+};
+
+const EXAM_TYPE = 'MIT'; 
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+let allTests      = [];
+let userResults   = {};
+let activeFilter  = 'all';
+let activeSort    = 'newest';
+
+let activeClassFilter = 'All';
+let activeTypeFilter = 'All';
+let activeBatchFilter = 'All';
+
+window.setMetaFilters = () => {
+  activeClassFilter = document.getElementById('filter-class').value;
+  activeTypeFilter = document.getElementById('filter-type').value;
+  activeBatchFilter = document.getElementById('filter-batch').value;
+  renderTests();
+};
+
+function populateBatchFilter() {
+  const batchDropdown = document.getElementById('filter-batch');
+  if (!batchDropdown) return;
+  const uniqueBatches = [...new Set(allTests.map(t => t.targetBatch).filter(b => b && b !== 'All'))];
+  batchDropdown.innerHTML = `<option value="All">All Batches</option>`;
+  uniqueBatches.forEach(batch => {
+    const opt = document.createElement('option');
+    opt.value = batch;
+    opt.textContent = `Batch: ${batch}`;
+    batchDropdown.appendChild(opt);
+  });
+}
+
+onAuthStateChanged(auth, async user => {
+  if (!user) { window.location.href = 'index.html?auth=required'; return; }
+  const initials = (user.displayName || user.email).split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('nav-user').innerHTML = `<div class="nav-avatar">${initials}</div><span>${user.displayName || user.email.split('@')[0]}</span>`;
+
+  try {
+    const rSnap = await getDocs(query(collection(db, 'results'), where('userId','==',user.uid)));
+    rSnap.docs.forEach(d => {
+      const data = d.data();
+      if (!userResults[data.testId] || userResults[data.testId].score < data.score) {
+        userResults[data.testId] = data;
+      }
+    });
+  } catch(e) { console.error('Could not load results:', e); }
+
+  const completedCount = Object.keys(userResults).length;
+  document.getElementById('stat-completed').textContent = completedCount;
+  await loadTests();
+});
+
+async function loadTests() {
+  try {
+    const snap = await getDocs(
+      query(collection(db, 'tests'), where('examTag', '==', EXAM_TYPE))
+    );
+    allTests = snap.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .filter(t => t.isPublished === true)
+      .sort((a, b) => {
+        const ta = a.createdAt?.seconds ?? 0;
+        const tb = b.createdAt?.seconds ?? 0;
+        return tb - ta;
+      });
+    document.getElementById('stat-total').textContent = allTests.length;
+    populateBatchFilter();
+    hideSkeleton();
+    renderTests();
+  } catch(e) {
+    console.error('loadTests error:', e);
+    hideSkeleton();
+    document.getElementById('error-area').innerHTML =
+      '<div class="error-banner">⚠️ <strong>Could not load tests.</strong> Error: <code>' + e.message + '</code></div>';
+  }
+}
+
+function hideSkeleton() {
+  document.getElementById('skeleton').style.display = 'none';
+  document.getElementById('tests-grid').style.display = 'grid';
+}
+
+window.setFilter = (filter, btn) => {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTests();
+};
+
+window.setSort = (sort) => {
+  activeSort = sort;
+  renderTests();
+};
+
+function renderTests() {
+  let tests = [...allTests];
+
+  if (activeFilter === 'free')         tests = tests.filter(t => t.isFree !== false);
+  if (activeFilter === 'new')          tests = tests.filter(t => t.isNew);
+  if (activeFilter === 'attempted')    tests = tests.filter(t => userResults[t.id]);
+  if (activeFilter === 'notAttempted') tests = tests.filter(t => !userResults[t.id]);
+
+  if (activeClassFilter !== 'All') {
+    tests = tests.filter(t => t.classLevel === activeClassFilter);
+  }
+  if (activeTypeFilter !== 'All') {
+    tests = tests.filter(t => t.testType === activeTypeFilter);
+  }
+  if (activeBatchFilter !== 'All') {
+    tests = tests.filter(t => t.targetBatch === activeBatchFilter);
+  }
+
+  if (activeSort === 'oldest') tests.reverse();
+  if (activeSort === 'title')  tests.sort((a,b) => a.title.localeCompare(b.title));
+
+  const grid   = document.getElementById('tests-grid');
+  const empty  = document.getElementById('empty-state');
+
+  if (tests.length === 0) {
+    grid.style.display  = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  grid.style.display  = 'grid';
+
+  grid.innerHTML = tests.map(t => {
+    const result    = userResults[t.id];
+    const duration  = Math.round((t.duration || 10800) / 60);
+    const badge     = t.isNew ? 'new' : t.isFree !== false ? 'free' : 'premium';
+    const badgeTxt  = t.isNew ? 'New' : t.isFree !== false ? 'Free' : 'Premium';
+    const attempts  = t.attemptCount || 0;
+
+    return `
+    <div class="test-card" onclick="startTest('${t.id}', '${escHtml(t.title)}')">
+      <div class="tc-top">
+        <div class="tc-badge ${badge}">${badgeTxt}</div>
+        <div class="tc-status"><div class="status-dot live"></div> Live</div>
+      </div>
+      <div class="tc-title">${escHtml(t.title)}</div>
+      <div class="tc-sub">${escHtml(t.description || t.year || '')}</div>
+      <div class="tc-meta">
+        <div class="tc-pill">⏱ ${duration} min</div>
+        <div class="tc-pill">❓ ${t.totalQuestions || 90} Qs</div>
+        <div class="tc-pill">📊 ${t.totalMarks || 300} marks</div>
+        
+        ${t.classLevel && t.classLevel !== 'All' ? `<div class="tc-pill">🎓 Class ${t.classLevel}</div>` : ''}
+        ${t.testType && t.testType !== 'All' ? `<div class="tc-pill">📝 ${t.testType}</div>` : ''}
+        ${t.targetBatch && t.targetBatch !== 'All' ? `<div class="tc-pill" style="border-color: var(--exam-color); color: var(--border);">🏢 ${t.targetBatch}</div>` : ''}
+        
+        ${t.sections ? `<div class="tc-pill">📚 ${t.sections.length} sections</div>` : ''}
+      </div>
+      <div class="tc-footer">
+        ${result ? `<div class="tc-completed">✓ ${result.score}/${t.totalMarks||300} · Best</div>` : `<div class="tc-attempts"><strong>${attempts.toLocaleString()}</strong> attempts</div>`}
+        <button class="tc-start" onclick="event.stopPropagation();startTest('${t.id}','${escHtml(t.title)}')">
+          ${result ? '🔁 Reattempt' : '▶ Start Test'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+window.startTest = (testId, title) => {
+  window.location.href = `/test.html?testId=${testId}&title=${encodeURIComponent(title)}`;
+};
+</script>
+</body>
+</html>
